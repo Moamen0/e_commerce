@@ -23,15 +23,15 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController fullNameController =
-      TextEditingController(text: "moamen abdallah");
+      TextEditingController(text: "Moamen Abdallah");
   TextEditingController phoneController =
-      TextEditingController(text: "01270899214");
+      TextEditingController(text: "01111111111");
   TextEditingController mailController =
-      TextEditingController(text: "moamen@gmail.com");
+      TextEditingController(text: "momenabdallah306@gmail.com");
   TextEditingController passwordController =
-      TextEditingController(text: "123456@M");
+      TextEditingController(text: "15261548@A");
   TextEditingController rePasswordController =
-      TextEditingController(text: "123456@M");
+      TextEditingController(text: "15261548@A");
 
   RegisterViewModel viewModel = getIt<RegisterViewModel>();
 

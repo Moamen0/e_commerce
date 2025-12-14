@@ -22,38 +22,32 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController =
-      TextEditingController(text: "moamen@gmail.com");
+      TextEditingController(text: "momenabdallah306@gmail.com");
   TextEditingController passwordController =
-      TextEditingController(text: "123456@M");
+      TextEditingController(text: "15261548@A");
 
   LoginViewModel viewModel = getIt<LoginViewModel>();
 
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginViewModel, AuthStates>(
+    return BlocListener<LoginViewModel,AuthStates>(
       bloc: viewModel,
-      listener: (context, state) {
-        if (state is AuthLoadingState) {
+      listener: (context,state){
+        if(state is AuthLoadingState){
           DialogUtils.showLoading(context: context, message: 'Waiting...');
-        } else if (state is AuthErrorState) {
+        }else if(state is AuthErrorState){
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(
-              context: context,
-              message: state.message,
-              title: 'Error',
-              posActionName: 'Ok');
-        } else if (state is AuthSuccessState) {
+          DialogUtils.showMessage(context: context, message: state.message,
+          title: 'Error',posActionName: 'Ok');
+        }else if(state is AuthSuccessState){
           DialogUtils.hideLoading(context);
-          DialogUtils.showMessage(
-              context: context,
-              message: 'Login Successfully',
-              title: 'Success',
-              posActionName: 'Ok',
-              posAction: () {
-                //todo: save token
-                SharedPrefsUtils.saveData(
-                    key: 'token', value: state.authResponse.token ?? '');
+          DialogUtils.showMessage(context: context, message: 'Login Successfully',
+              title: 'Success',posActionName: 'Ok',posAction: (){
+            //todo: save token
+                SharedPrefsUtils.saveData(key: 'token', value: state.authResponse.token??'');
                 //todo : navigate to home screen
+                Navigator.of(context).pushReplacementNamed(AppRoutes.homeRoute);
               });
         }
       },
@@ -65,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      top: 20.h, bottom: 87.h, left: 97.w, right: 97.w),
+                      top: 91.h, bottom: 87.h, left: 97.w, right: 97.w),
                   child: Image.asset(
                     AppAssets.appBarLeading,
                   ),
@@ -137,8 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textStyle: AppStyles.semi20Primary,
                                     text: "Login",
                                     onPressed: () {
-                                      viewModel.login(
-                                          email: emailController.text,
+                                      viewModel.login(email: emailController.text,
                                           password: passwordController.text);
                                     }),
                               ),
